@@ -1,3 +1,5 @@
+"use client"
+
 import { Product } from "@/types";
 import  Currency  from "@/components/ui/currency";
 import Button from "./ui/button";
@@ -36,7 +38,7 @@ const Info: React.FC<InfoProps> = ({data})  => {
             <Button className="flex items-center gap-x-2">
                 Add To Cart
                 <ShoppingCart/>
-            </Button>
+            </Button> 
         </div>
         </>
      );
