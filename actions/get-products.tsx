@@ -21,7 +21,11 @@ const getProducts = async (query: Query): Promise<Product[]> => {
     },
   });
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
 
   return res.json();
 };
