@@ -1,7 +1,7 @@
 import { Product } from "@/types";
 import qs from "query-string";
 
-const URL=`${process.env.NEXT_PUBLIC_API_URL}/products`;
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
 
 interface Query {
   categoryId?: string;
@@ -21,13 +21,22 @@ const getProducts = async (query: Query): Promise<Product[]> => {
     },
   });
 
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-    },
-  });
+  try {
+    const res = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
 
-  return res.json();
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error;
+  }
 };
 
 export default getProducts;
